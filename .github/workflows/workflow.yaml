@@ -1,0 +1,33 @@
+name: Scotty Homebrew Workflow
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: The scotty version to release
+        required: true
+      mac-sha:
+        description: The SHA of the mac binary
+        required: true
+      linux-sha:
+        description: The SHA of the linux binary
+        required: true
+
+jobs:
+  release:
+    name: Release new version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Checkout full history: git doesn't like to commit without it
+      - name: Run the template with the inputs from the trigger
+        run: go run main.go -version "${{ github.event.inputs.version }}" -mac-sha "${{ github.event.inputs.mac-sha }}" -linux-sha "${{ github.event.inputs.linux-sha }}" > scotty.rb
+      - name: Commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Github Action"
+          git commit -m "Release scotty ${{ github.event.inputs.version }}" -a
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
