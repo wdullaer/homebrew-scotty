@@ -5,16 +5,16 @@
 class Scotty < Formula
   desc "Scotty is a tool to rapidly switch to visited directories in your shell."
   homepage "https://github.com/wdullaer/scotty"
-  version "v0.3.0"
+  version "v0.3.4"
   head "https://github.com/wdullaer/scotty.git"
   bottle :unneeded
 
   if OS.mac?
-    url "https://github.com/wdullaer/scotty/releases/download/v0.3.0/scotty-x86_64-apple-darwin.tar.gz"
-    sha256 "c55d512cf3530a38573b89d0ff9ec32abee36f8922bd9addd9716d6bbeb03c27"
+    url "https://github.com/wdullaer/scotty/releases/download/v0.3.4/scotty-x86_64-apple-darwin.tar.gz"
+    sha256 "3030a3e98d609e53008d08a663d808e01aad6de30b0e58d0ed29fa3b25457355"
   elsif OS.linux?
-    url "https://github.com/wdullaer/scotty/releases/download/v0.3.0/scotty-x86_64-unknown-linux-gnu.tar.gz"
-    sha256 "5b989a53ec43974118ca772b87aa8f614f507a3fc1e8cb5e8a8630d6763e2052"
+    url "https://github.com/wdullaer/scotty/releases/download/v0.3.4/scotty-x86_64-unknown-linux-gnu.tar.gz"
+    sha256 "2b5f20ff8d806717217b285a52bc7fb4305738e084ace7db36c98d4eb82e4407"
   end
 
   def install
@@ -22,7 +22,7 @@ class Scotty < Formula
   end
 
   test do
-    assert_equal "scotty v0.3.0", shell_output("#{bin}/scotty --version")
+    assert_equal "scotty v0.3.4", shell_output("#{bin}/scotty --version")
   end
 
 end
