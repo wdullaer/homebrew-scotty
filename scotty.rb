@@ -7,7 +7,6 @@ class Scotty < Formula
   homepage "https://github.com/wdullaer/scotty"
   version "v0.3.4"
   head "https://github.com/wdullaer/scotty.git"
-  bottle :unneeded
 
   if OS.mac?
     url "https://github.com/wdullaer/scotty/releases/download/v0.3.4/scotty-x86_64-apple-darwin.tar.gz"
