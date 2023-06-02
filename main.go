@@ -8,23 +8,26 @@ import (
 )
 
 type Params struct {
-	Version  string
-	MacSHA   string
-	LinuxSHA string
+	Version       string
+	MacAmd64SHA   string
+	MacArm64SHA   string
+	LinuxAmd64SHA string
 }
 
 func main() {
 	version := flag.String("version", "", "The scotty version to release")
-	macSHA := flag.String("mac-sha", "", "The SHA of the mac binary")
-	linuxSHA := flag.String("linux-sha", "", "The SHA of the linux binary")
+	macAmd64SHA := flag.String("mac-amd64-sha", "", "The SHA of the mac amd64 binary")
+	macArm64SHA := flag.String("mac-arm64-sha", "", "The SHA of the mac arm64 binary")
+	linuxAmd64SHA := flag.String("linux-amd64-sha", "", "The SHA of the linux amd64 binary")
 	templatePath := flag.String("template-path", "scotty.rb.tmpl", "Path of the template file")
 
 	flag.Parse()
 
 	params := Params{
-		Version:  *version,
-		MacSHA:   *macSHA,
-		LinuxSHA: *linuxSHA,
+		Version:       *version,
+		MacAmd64SHA:   *macAmd64SHA,
+		MacArm64SHA:   *macArm64SHA,
+		LinuxAmd64SHA: *linuxAmd64SHA,
 	}
 
 	templ := template.Must(template.ParseFiles(*templatePath))
